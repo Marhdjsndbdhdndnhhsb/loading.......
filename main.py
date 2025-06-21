@@ -12,20 +12,40 @@ BLUE = (0, 0, 255)
 RED = (255, 0, 0)
 GREEN = (0, 255, 0)
 
+
+
+
+def render_ascii_art(ascii_art, x, y, color=BLACK, line_height=20):
+    lines = ascii_art.strip().split('\n')
+    for i, line in enumerate(lines):
+        text_surf = font.render(line, True, color)
+        screen.blit(text_surf, (x, y + i * line_height))
+
+
+rock = "✊"
+scissors = "✌"
+paper = "✋"
+
 CHOICES = ["Камінь", "Ножиці", "Папір"]
 
 pygame.init()
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Камінь-Ножиці-Папір")
 clock = pygame.time.Clock() 
-BASE_PATH = "C:\\my_game\\"
-rock_img = pygame.image.load(BASE_PATH + "rock.png").convert_alpha()
-scissors_img = pygame.image.load(BASE_PATH + "scissors.png").convert_alpha()
-paper_img = pygame.image.load(BASE_PATH + "paper.png").convert_alpha()
-IMAGE_SIZE = 80 
+
+IMAGE_SIZE = 80
+font = pygame.font.SysFont("Segoe UI Symbol", IMAGE_SIZE)
+
+
+rock_img = font.render(rock, True, "#F0E68C")
+scissors_img = font.render(scissors, True, "#F0E68C")
+paper_img =  font.render(paper, True, "#F0E68C")
+
+    
 rock_img = pygame.transform.scale(rock_img, (IMAGE_SIZE, IMAGE_SIZE))     
 scissors_img = pygame.transform.scale(scissors_img, (IMAGE_SIZE, IMAGE_SIZE)) 
 paper_img = pygame.transform.scale(paper_img, (IMAGE_SIZE, IMAGE_SIZE))  
+
 
 CHOICE_IMAGES = { 
     "Камінь": rock_img,
@@ -114,3 +134,8 @@ def determine_winner(player, computer):
         return "Комп'ютер переміг!"
 if __name__ == "__main__":
     game_loop()
+
+
+ 
+    
+  
